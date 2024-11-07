@@ -182,4 +182,39 @@ Sub whileloop_demo()
     Loop
 End Sub
 
+Function Discount(Quantity, Price)
+
+If Quantity > 25 Then
+    Discount = Quantity * Price * 0.2
+Else: Discount = 0
+End If
+End Function
+
+Sub ClearContent()
+    Answer = MsgBox("Confirm you want to clear?", vbYesNo)
+    
+    If Answer = vbYes Then
+        Rows("6:" & Rows.Count).ClearContents
+    Exit Sub
+    End If
+End Sub
+
+Sub SendEmail()
+    Dim OutApp As Object
+    Dim OutMail As Object
+    Set OutApp = CreateObject("Outlook.Application")
+    Set OutMail = OutApp.CreateItem(0)
+    
+    With OutMail
+    .To = "hello@gmail.com"
+    .Subject = "Excel File"
+    .Body = "This is a test email"
+    .Attachments.Add ThisWorkbook.FullName
+    .Display
+    End With
+    
+    Set OutApp = Nothing
+    Set OutMail = Nothing
+    
+End Sub
 
